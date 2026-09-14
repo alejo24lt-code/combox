@@ -1,14 +1,138 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMBOX - HOME</title>
-    <link rel="icon" type="image/png" href="/combox/src/icons/logo.png">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>COMBOX - HOME</title>
+
+<link rel="icon" type="image/png" href="src/icons/logo.png">
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #0C6E0C;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 400px;
+        background-color: white;
+        padding: 40px;
+        text-align: center;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        margin: 0;
+        color: #0C6E0C;
+        font-size: 32px;
+    }
+
+    .subtitle {
+        color: #666;
+        margin: 10px 0 30px;
+        font-size: 16px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        display: block;
+        padding: 13px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .signin {
+        background-color: #0C6E0C;
+        color: white;
+    }
+
+    .signin:hover {
+        background-color: #095509;
+    }
+
+    .signup {
+        background-color: white;
+        color: #0C6E0C;
+        border: 2px solid #0C6E0C;
+    }
+
+    .signup:hover {
+        background-color: #0C6E0C;
+        color: white;
+    }
+
+    .footer {
+        margin-top: 25px;
+        font-size: 13px;
+        color: #888;
+    }
+
+</style>
+
+
 </head>
-<body bgcolor="0AD10A">
-    <a href="src/signup.html" target="_blank ">Sing up</a>   <!-- codigo para un enlace de esto manda a otra carpeta-->
-    <!-- la parte de target="blank" esto nos sirve si deseamos que al dar en el enlace nos abra a otra pagina, sino nomas dejamos ahi eso  y se abre ahi mismo  -->
-    <a href="src/signin.html">Sing in</a>   <!--igualemnte con esto creamos un enlace para llevarnos a otra pagina que se la creo en el src como archivo  y con colocar el nombre te manda ahi -->
+
+<body>
+
+
+<div class="container">
+
+    <img src="src/icons/logo.png" alt="COMBOX Logo" class="logo">
+
+    <h1>Welcome to COMBOX</h1>
+
+    <p class="subtitle">
+        Your platform for connecting and managing your services.
+    </p>
+
+    <div class="buttons">
+
+        <a href="src/signin.html" class="btn signin">
+            Sign in
+        </a>
+
+        <a href="src/signup.html" class="btn signup">
+            Sign up
+        </a>
+
+    </div>
+
+    <p class="footer">
+        Please select an option to continue
+    </p>
+
+</div>
+
+
 </body>
+
 </html>
