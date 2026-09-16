@@ -1,31 +1,141 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combox | signup </title>
-    <link rel="icon" type="image/png" href="icons/logo.png"> <!-- Aqui quitamos la parte de la carpeta de lo src y combox porque sino no lo va a encontrar esto y no nos va aparecer esto -->
+
+    <title>COMBOX | Sign Up</title>
+
+    <link rel="icon" type="image/png" href="icons/logo.png">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-color: #2FA82F;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 350px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            width: 80px;
+            display: block;
+            margin: 0 auto 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2FA82F;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2FA82F;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+
+            background-color: #2FA82F;
+            color: white;
+
+            border: none;
+            border-radius: 6px;
+
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #238323;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #2FA82F;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
-    <body bgcolor="2FA82F"></body>
-    <div style="text-align: center;"
-    <h3>Register new Combox user</h3><br>
 
-    <label>First name: </label><br>
-    <input type="text"><br>
+    <div class="container">
 
-    <label>Last name </label><br>
-    <input type="text"><br>
+        <img src="icons/logo.png" alt="COMBOX Logo" class="logo">
 
-    <label>Mobile number </label><br>
-    <input type="text"><br>
+        <h2>Register New COMBOX User</h2>
 
-    <label>Email </label><br>
-    <input type="email"><br>
+        <form>
 
-    <label>Password </label><br>
-    <input type="password"><br>
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name">
 
-    <button>Register</button>  
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name">
+
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="signin.html">Sign in</a>
+        </div>
+
+    </div>
+
 </body>
+
 </html>
