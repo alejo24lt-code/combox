@@ -3,11 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Combox | Sign In</title>
+    <link rel="icon" type="image/png" href="icons/logo.png">
 </head>
-<body>
-    <body bgcolor="0C6E0C"></body>
-    
-    
+
+<body style="
+    background: linear-gradient(135deg, #0C6E0C, #1565C0);
+    font-family: Arial, sans-serif;
+">
+
+    <div style="
+        width: 320px;
+        margin: 80px auto;
+        padding: 30px;
+        border: 3px solid #1565C0;
+        border-radius: 15px;
+        background-color: #FFFFFF;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    ">
+
+        <img src="icons/logo.png" alt="Combox Logo" width="90">
+
+        <h2 style="color: #1565C0;">Sign in to Combox</h2>
+
+        <p style="color: #555555;">Welcome back!</p>
+
+        <label for="email" style="color: #0C6E0C;">Email:</label><br>
+        <input type="email" id="email" name="email" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 5px;
+        "><br><br>
+
+        <label for="password" style="color: #0C6E0C;">Password:</label><br>
+        <input type="password" id="password" name="password" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 5px;
+        "><br><br>
+
+        <button type="submit" style="
+            background-color: #1565C0;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+        ">
+            Sign In
+        </button>
+
+        <p style="margin-top: 20px;">
+            <a href="signup.html" style="color: #0C6E0C;">
+                Create an account
+            </a>
+        </p>
+
+    </div>
+
 </body>
 </html>
