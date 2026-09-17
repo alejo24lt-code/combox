@@ -1,141 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>COMBOX | Sign Up</title>
-
+    <title>Combox | Sign Up</title>
     <link rel="icon" type="image/png" href="icons/logo.png">
-
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background-color: #2FA82F;
-            font-family: Arial, sans-serif;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            width: 350px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .logo {
-            width: 80px;
-            display: block;
-            margin: 0 auto 15px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #2FA82F;
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-top: 12px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #2FA82F;
-        }
-
-        button {
-            width: 100%;
-            margin-top: 25px;
-            padding: 12px;
-
-            background-color: #2FA82F;
-            color: white;
-
-            border: none;
-            border-radius: 6px;
-
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #238323;
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .login-link a {
-            color: #2FA82F;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
-<body>
+<body style="
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0C6E0C, #1565C0);
+">
 
-    <div class="container">
+    <div style="
+        width: 340px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: rgba(245,245,245,0.95);
+        border: 3px solid #0C6E0C;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    ">
 
-        <img src="icons/logo.png" alt="COMBOX Logo" class="logo">
+        <img src="icons/logo.png" alt="Combox Logo" width="90">
 
-        <h2>Register New COMBOX User</h2>
+        <h2 style="color: #0C6E0C;">
+            Create your Combox account
+        </h2>
 
-        <form>
+        <p style="color: #555555;">
+            Register a new account.
+        </p>
 
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name">
+        <label for="firstname" style="color: #1565C0;">
+            First name:
+        </label><br>
 
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name">
+        <input type="text" id="firstname" name="firstname" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
 
-            <label for="mobile">Mobile Number</label>
-            <input type="tel" id="mobile" name="mobile">
+        <br><br>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+        <label for="lastname" style="color: #1565C0;">
+            Last name:
+        </label><br>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
+        <input type="text" id="lastname" name="lastname" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
 
-            <button type="submit">Register</button>
+        <br><br>
 
-        </form>
+        <label for="phone" style="color: #1565C0;">
+            Mobile number:
+        </label><br>
 
-        <div class="login-link">
-            Already have an account?
-            <a href="signin.html">Sign in</a>
-        </div>
+        <input type="tel" id="phone" name="phone" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <label for="email" style="color: #1565C0;">
+            Email:
+        </label><br>
+
+        <input type="email" id="email" name="email" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <label for="password" style="color: #1565C0;">
+            Password:
+        </label><br>
+
+        <input type="password" id="password" name="password" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <button type="submit" style="
+            background-color: #0C6E0C;
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+        ">
+            Register
+        </button>
+
+        <p>
+            <a href="signin.html" style="
+                color: #1565C0;
+                text-decoration: none;
+            ">
+                Already have an account? Sign In
+            </a>
+        </p>
 
     </div>
 
 </body>
-
 </html>
