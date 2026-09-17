@@ -3,29 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combox | signup </title>
-    <link rel="icon" type="image/png" href="icons/logo.png"> <!-- Aqui quitamos la parte de la carpeta de lo src y combox porque sino no lo va a encontrar esto y no nos va aparecer esto -->
+    <title>Combox | Sign Up</title>
+    <link rel="icon" type="image/png" href="icons/logo.png">
 </head>
-<body>
-    <body bgcolor="2FA82F"></body>
-    <div style="text-align: center;"
-    <h3>Register new Combox user</h3><br>
 
-    <label>First name: </label><br>
-    <input type="text"><br>
+<body style="
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0C6E0C, #1565C0);
+">
 
-    <label>Last name </label><br>
-    <input type="text"><br>
+    <div style="
+        width: 340px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: rgba(245,245,245,0.95);
+        border: 3px solid #0C6E0C;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    ">
 
-    <label>Mobile number </label><br>
-    <input type="text"><br>
+        <img src="icons/logo.png" alt="Combox Logo" width="90">
 
-    <label>Email </label><br>
-    <input type="email"><br>
+        <h2 style="color: #0C6E0C;">
+            Create your Combox account
+        </h2>
 
-    <label>Password </label><br>
-    <input type="password"><br>
+        <p style="color: #555555;">
+            Register a new account.
+        </p>
 
-    <button>Register</button>  
+        <label for="firstname" style="color: #1565C0;">
+            First name:
+        </label><br>
+
+        <input type="text" id="firstname" name="firstname" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <label for="lastname" style="color: #1565C0;">
+            Last name:
+        </label><br>
+
+        <input type="text" id="lastname" name="lastname" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <label for="phone" style="color: #1565C0;">
+            Mobile number:
+        </label><br>
+
+        <input type="tel" id="phone" name="phone" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <label for="email" style="color: #1565C0;">
+            Email:
+        </label><br>
+
+        <input type="email" id="email" name="email" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <label for="password" style="color: #1565C0;">
+            Password:
+        </label><br>
+
+        <input type="password" id="password" name="password" style="
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #1565C0;
+            border-radius: 6px;
+        ">
+
+        <br><br>
+
+        <button type="submit" style="
+            background-color: #0C6E0C;
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+        ">
+            Register
+        </button>
+
+        <p>
+            <a href="signin.html" style="
+                color: #1565C0;
+                text-decoration: none;
+            ">
+                Already have an account? Sign In
+            </a>
+        </p>
+
+    </div>
+
 </body>
 </html>
