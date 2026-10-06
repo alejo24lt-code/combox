@@ -33,12 +33,13 @@
         <p style="color: #555555;">
             Register a new account.
         </p>
+        <form name="signupForm" action="signup.php" method="POST">
 
         <label for="firstname" style="color: #1565C0;">
             First name:
         </label><br>
 
-        <input type="text" id="firstname" name="firstname" style="
+        <input type="text" id="firstname" name="firstname" required style="
             width: 90%;
             padding: 8px;
             margin-top: 5px;
@@ -52,42 +53,39 @@
             Last name:
         </label><br>
 
-        <input type="text" id="lastname" name="lastname" style="
+        <input type="text" id="lastname" name="lastname" required style="
             width: 90%;
             padding: 8px;
             margin-top: 5px;
             border: 2px solid #1565C0;
             border-radius: 6px;
         ">
-
         <br><br>
 
         <label for="phone" style="color: #1565C0;">
             Mobile number:
         </label><br>
 
-        <input type="tel" id="phone" name="phone" style="
+        <input type="tel" id="phone" name="phone" required style="
             width: 90%;
             padding: 8px;
             margin-top: 5px;
             border: 2px solid #1565C0;
             border-radius: 6px;
         ">
-
         <br><br>
 
         <label for="email" style="color: #1565C0;">
             Email:
         </label><br>
 
-        <input type="email" id="email" name="email" style="
+        <input type="email" id="email" name="email" required style=" 
             width: 90%;
             padding: 8px;
             margin-top: 5px;
             border: 2px solid #1565C0;
             border-radius: 6px;
         ">
-
         <br><br>
 
         <label for="password" style="color: #1565C0;">
@@ -101,7 +99,6 @@
             border: 2px solid #1565C0;
             border-radius: 6px;
         ">
-
         <br><br>
 
         <button type="submit" style="
@@ -114,6 +111,7 @@
         ">
             Register
         </button>
+            </form>
 
         <p>
             <a href="signin.html" style="
