@@ -1,7 +1,6 @@
 <?php
 // Get data from the form (cliente)
 
-
 //get data base conecction 
 require('../config/database.php');
 
