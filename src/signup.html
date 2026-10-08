@@ -33,11 +33,19 @@
         <p style="color: #555555;">
             Register a new account.
         </p>
+
+
+        <!-- Esta linea es la mas importante porque es la que conecta al php y manda hacer el registro  este tiene nombre del formulario, el action
+         que es a donde se envia la informacion y el metodo POST que es como se evia la informacion-->
         <form name="signupForm" action="signup.php" method="POST">
+
+
 
         <label for="firstname" style="color: #1565C0;">
             First name:
         </label><br>
+
+        <!--el id sirve para identificar el elemento en html mientras que name es el mas importante porque es el que se utiliza para enviar los datos al servidor-->
 
         <input type="text" id="firstname" name="firstname" required style="
             width: 90%;
