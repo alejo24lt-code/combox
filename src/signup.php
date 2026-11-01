@@ -1,44 +1,119 @@
 <?php
-    // Get data from the form (cliente)
 
-    //get data base conecction 
-    require('../config/database.php');
+// Get data from the form (cliente)
 
-    $f_name = $_POST['firstname'];
-    $l_name = $_POST['lastname'];
-    $m_phone = $_POST['phone'];
-    $e_mail = $_POST['email'];
-    $p_assword = $_POST['password'];
-    //vamos a encriptar la contraseña
-    $pass_enc = md5($p_assword);
+// get database connection
+require('../config/database.php');
 
+$f_name = $_POST['firstname'];
+$l_name = $_POST['lastname'];
+$m_phone = $_POST['phone'];
+$e_mail = $_POST['email'];
+$p_assword = $_POST['password'];
 
-    //prepare query es basicamente preparar la consulta para insertar los datos en la base de datos, es como un borrador de la consulta, luego se ejecuta con pg_query_params
-    $sql = "INSERT INTO users (
-        firstname, lastname, mobile_phone, email, password) 
-        VALUES ('$f_name', '$l_name', '$m_phone', '$e_mail', '$pass_enc')";
-    //el tunder usamos en caso de que no tengamos frontend cuanod no tengamos interfaz grafica, es basicamente un mensaje que nos dice que la consulta se ejecuto correctamente o no, si no se ejecuto correctamente nos dice el error que ocurrio
-    	$local_res = pg_query($local_conn, $sql);
-
-	$supa_res = pg_query($supa_conn, $sql);
+// vamos a encriptar la contraseña
+$pass_enc = md5($p_assword);
 
 
-    // aqui verificamos si la consulta se ejecuto correctamente en la base de datos local y en la base de datos supabase, si es asi imprimimos un mensaje de exito, si no imprimimos un mensaje de error
-    if($local_res) {
-        echo "User has been created sucessfully into local database<br>";
-    } else {
-        echo "User has not been created to local database !! <br>" ;
+// VERIFICAR SI EL CORREO O EL TELEFONO YA EXISTEN
+
+$sql_check = "SELECT email, mobile_phone
+              FROM public.users
+              WHERE email = $1 OR mobile_phone = $2";
+
+$check_res = pg_query_params(
+    $supa_conn,
+    $sql_check,
+    array($e_mail, $m_phone)
+);
+
+if (!$check_res) {
+    die("Error al verificar los datos.");
+}
+/* COMPROBAR SI EXISTE ALGUNA COINCIDENCIA */
+if (pg_num_rows($check_res) > 0) {
+
+    $user = pg_fetch_assoc($check_res);
+
+    if ($user['email'] == $e_mail) {
+
+        echo json_encode([
+            'success' => false,
+            'field' => 'email',
+            'message' => 'Este correo ya se encuentra registrado.'
+        ]);
+        exit;
+
+    } elseif ($user['mobile_phone'] == $m_phone) {
+
+        echo json_encode([
+            'success' => false,
+            'field' => 'phone',
+            'message' => 'Este teléfono ya se encuentra registrado.'
+        ]);
+        exit;
     }
+}
 
-    // aqui verificamos si la consulta se ejecuto correctamente en la base de datos supabase, si es asi imprimimos un mensaje de exito, si no imprimimos un mensaje de error
+// PREPARE QUERY
+// Preparamos la consulta para insertar los datos en la base de datos.
 
-    if($supa_res) {
-        echo "User has been created sucessfully into supabase database<br>";
-    } else {
-        echo "User has not been created to supabase database !! <br>" ;
-    }
+$sql = "INSERT INTO public.users (
+            firstname, lastname, mobile_phone, email, password
+        )
+        VALUES ($1, $2, $3, $4, $5)";
 
-    echo "<script>alert('User has been created successfylly:::')</script>";
-    header('refresh:0;url=signin.html');
+
+// INSERCION LOCAL DESACTIVADA POR AHORA
+
+/*
+$local_res = pg_query_params($local_conn, $sql, array(
+    $f_name, $l_name, $m_phone, $e_mail, $pass_enc
+));
+*/
+
+
+// INSERCION EN SUPABASE
+
+$supa_res = pg_query_params(
+    $supa_conn,
+    $sql,
+    array($f_name, $l_name, $m_phone, $e_mail, $pass_enc)
+);
+if ($supa_res) {
+
+    echo json_encode([
+        'success' => true,
+        'message' => 'Account created successfully!'
+    ]);
+    exit;
+
+} else {
+
+    echo json_encode([
+        'success' => false,
+        'message' => 'Could not create the account.'
+    ]);
+    exit;
+}
+
+// VERIFICAR SI LA CONSULTA SE EJECUTO CORRECTAMENTE
+
+if ($supa_res) {
+
+    echo "<script>
+            alert('User has been created successfully in Supabase!');
+            window.location.href = 'signin.html';
+          </script>";
+
+} else {
+
+    error_log(pg_last_error($supa_conn));
+
+    echo "<script>
+            alert('User has not been created. Please try again.');
+            window.history.back();
+          </script>";
+}
 
 ?>

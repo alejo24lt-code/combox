@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combox | Sign Up</title>
     <link rel="icon" type="image/png" href="icons/logo.png">
+
+
+
+    <style>
+    .error-message {
+        color: red;
+        font-size: 13px;
+        display: block;
+        margin-top: 4px;
+    }
+</style>
+
+
 </head>
 
 <body style="
@@ -81,6 +94,7 @@
             border: 2px solid #1565C0;
             border-radius: 6px;
         ">
+        <span id="phone-error" class="error-message"></span>
         <br><br>
 
         <label for="email" style="color: #1565C0;">
@@ -94,6 +108,7 @@
             border: 2px solid #1565C0;
             border-radius: 6px;
         ">
+        <span id="email-error" class="error-message"></span>
         <br><br>
 
         <label for="password" style="color: #1565C0;">
@@ -128,9 +143,60 @@
             ">
                 Already have an account? Sign In
             </a>
-        </p>
+        </p> </div>
 
-    </div>
+
+
+        <script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async function(event) {
+
+        event.preventDefault();
+
+        document.getElementById('phone-error').textContent = '';
+        document.getElementById('email-error').textContent = '';
+
+        const formData = new FormData(form);
+
+        try {
+
+            const response = await fetch('signup.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+
+                if (result.field === 'phone') {
+                    document.getElementById('phone-error').textContent = result.message;
+                }
+
+                if (result.field === 'email') {
+                    document.getElementById('email-error').textContent = result.message;
+                }
+
+            } else {
+
+                alert(result.message);
+                window.location.href = 'signin.html';
+
+            }
+
+        } catch (error) {
+
+    alert('Error: ' + error.message);
+    console.error(error);
+
+}
+
+    });
+</script>
+
+
+
 
 </body>
 </html>

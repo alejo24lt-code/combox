@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
+/*
 // CONEXIÓN LOCAL
 
 $local_host = "localhost";
@@ -19,7 +19,7 @@ $local_conn = pg_connect("
     user=$local_user
     password=$local_password
 ");
-
+*/
 
 // CONEXIÓN SUPABASE
 
@@ -39,17 +39,17 @@ $supa_conn = pg_connect("
 
 
 // VERIFICAR CONEXIONES
-
+/*
 if (!$local_conn) {
     die("Local database connection failed");
 } else {
     echo "Local Connected success<br>";
 }
-
+*/
 if (!$supa_conn) {
     die("Supabase connection failed");
 } else {
-    echo "Supabase Connected success<br>";
+   // echo "Supabase Connected success";
 }
 
 ?>
