@@ -117,39 +117,45 @@
         Welcome back!
     </p>
 
-    <label for="email">
-        Email:
-    </label>
+    <form action="signin.php" method="POST">
 
-    <br>
+        <label for="email">
+            Email:
+        </label>
 
-    <input 
-        type="email" 
-        id="email" 
-        name="email"
-        placeholder="Enter your email"
-    >
+        <br>
 
-    <br><br>
+        <input 
+            type="email" 
+            id="email" 
+            name="email"
+            placeholder="Example@gmail.com"
+            required
+        >
 
-    <label for="password">
-        Password:
-    </label>
+        <br><br>
 
-    <br>
+        <label for="password">
+            Password:
+        </label>
 
-    <input 
-        type="password" 
-        id="password" 
-        name="password"
-        placeholder="Enter your password"
-    >
+        <br>
 
-    <br><br>
+        <input 
+            type="password" 
+            id="password" 
+            name="password"
+            placeholder="********"
+            required
+        >
 
-    <button type="submit" class="signin">
-        Sign In
-    </button>
+        <br><br>
+
+        <button type="submit" class="signin">
+            Sign In
+        </button>
+
+    </form>
 
     <p>
         <a href="forgotpassword.html" class="link forgot">
