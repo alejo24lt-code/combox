@@ -3,7 +3,8 @@
 
 require('../config/database.php');
 
-$sql = "SELECT firstname,
+$sql = "SELECT id,
+    firstname,
     lastname,
     mobile_phone,
     email,
@@ -43,9 +44,14 @@ $res = pg_query($supa_conn, $sql);
             echo "<td>" . $row['email'] . "</td>";
             echo "<td>" . $row['user_status'] . "</td>";
             echo "<td align='center'><img src='" . $row['photo_url'] . "' width='30'></td>";
+            
+            
             echo "<td>
-                <img src='icons/lapiz.png' width='20'>&nbsp;&nbsp;
+                <a href='edit_user.php?id=" . $row['id'] . "'>
+                 <img src='icons/lapiz.png' width='20'>&nbsp;&nbsp;
+                </a>&nbsp;&nbsp;
                 <img src='icons/basura.png' width='20'>&nbsp;&nbsp;
+
                 <img src='icons/lupa.png' width='20'>
                 </td>";
             
