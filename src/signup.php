@@ -10,6 +10,7 @@ $l_name = $_POST['lastname'];
 $m_phone = $_POST['phone'];
 $e_mail = $_POST['email'];
 $p_assword = $_POST['password'];
+$photo_url = $_POST['photo_url'];
 
 // vamos a encriptar la contraseña
 $pass_enc = md5($p_assword);
