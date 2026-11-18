@@ -1,20 +1,35 @@
+
 <?php
 
-// Get data from the form (cliente)
+header('Content-Type: application/json; charset=utf-8');
 
-// get database connection
+// Obtener conexión con Supabase
 require('../config/database.php');
 
-$f_name = $_POST['firstname'];
-$l_name = $_POST['lastname'];
-$m_phone = $_POST['phone'];
-$e_mail = $_POST['email'];
-$p_assword = $_POST['password'];
-$photo_url = $_POST['photo_url'];
+// Recibir datos del formulario
+$f_name = trim($_POST['firstname'] ?? '');
+$l_name = trim($_POST['lastname'] ?? '');
+$m_phone = trim($_POST['phone'] ?? '');
+$e_mail = trim($_POST['email'] ?? '');
+$p_assword = $_POST['password'] ?? '';
 
-// vamos a encriptar la contraseña
+// Verificar campos obligatorios
+if (
+    $f_name === '' ||
+    $l_name === '' ||
+    $m_phone === '' ||
+    $e_mail === '' ||
+    $p_assword === ''
+) {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Todos los campos son obligatorios.'
+    ]);
+    exit;
+}
+
+// Encriptar contraseña (se conserva el método actual)
 $pass_enc = md5($p_assword);
-
 
 // VERIFICAR SI EL CORREO O EL TELEFONO YA EXISTEN
 
@@ -29,14 +44,21 @@ $check_res = pg_query_params(
 );
 
 if (!$check_res) {
-    die("Error al verificar los datos.");
+
+    error_log(pg_last_error($supa_conn));
+
+    echo json_encode([
+        'success' => false,
+        'message' => 'Error al verificar los datos.'
+    ]);
+    exit;
 }
-/* COMPROBAR SI EXISTE ALGUNA COINCIDENCIA */
-if (pg_num_rows($check_res) > 0) {
 
-    $user = pg_fetch_assoc($check_res);
+// COMPROBAR COINCIDENCIAS
 
-    if ($user['email'] == $e_mail) {
+while ($user = pg_fetch_assoc($check_res)) {
+
+    if ($user['email'] === $e_mail) {
 
         echo json_encode([
             'success' => false,
@@ -44,8 +66,9 @@ if (pg_num_rows($check_res) > 0) {
             'message' => 'Este correo ya se encuentra registrado.'
         ]);
         exit;
+    }
 
-    } elseif ($user['mobile_phone'] == $m_phone) {
+    if ($user['mobile_phone'] === $m_phone) {
 
         echo json_encode([
             'success' => false,
@@ -56,65 +79,54 @@ if (pg_num_rows($check_res) > 0) {
     }
 }
 
-// PREPARE QUERY
-// Preparamos la consulta para insertar los datos en la base de datos.
+// PREPARAR CONSULTA DE INSERCION
+
+$photo_url = 'photos/usuario.png';
 
 $sql = "INSERT INTO public.users (
-            firstname, lastname, mobile_phone, email, password
+            firstname,
+            lastname,
+            mobile_phone,
+            email,
+            password,
+            photo_url
         )
-        VALUES ($1, $2, $3, $4, $5)";
+        VALUES ($1, $2, $3, $4, $5, $6)";
 
-
-// INSERCION LOCAL DESACTIVADA POR AHORA
-
-/*
-$local_res = pg_query_params($local_conn, $sql, array(
-    $f_name, $l_name, $m_phone, $e_mail, $pass_enc
-));
-*/
-
-
-// INSERCION EN SUPABASE
+// INSERTAR EN SUPABASE
 
 $supa_res = pg_query_params(
     $supa_conn,
     $sql,
-    array($f_name, $l_name, $m_phone, $e_mail, $pass_enc)
+    array(
+    $f_name,
+    $l_name,
+    $m_phone,
+    $e_mail,
+    $pass_enc,
+    $photo_url
+)
 );
+
+// RESPUESTA
+
 if ($supa_res) {
 
     echo json_encode([
         'success' => true,
         'message' => 'Account created successfully!'
     ]);
-    exit;
-
-} else {
-
-    echo json_encode([
-        'success' => false,
-        'message' => 'Could not create the account.'
-    ]);
-    exit;
-}
-
-// VERIFICAR SI LA CONSULTA SE EJECUTO CORRECTAMENTE
-
-if ($supa_res) {
-
-    echo "<script>
-            alert('User has been created successfully in Supabase!');
-            window.location.href = 'signin.html';
-          </script>";
 
 } else {
 
     error_log(pg_last_error($supa_conn));
 
-    echo "<script>
-            alert('User has not been created. Please try again.');
-            window.history.back();
-          </script>";
+    echo json_encode([
+        'success' => false,
+        'message' => 'Could not create the account. Please try again.'
+    ]);
 }
 
+exit;
 ?>
+
