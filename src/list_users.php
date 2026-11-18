@@ -9,7 +9,12 @@ $sql = "SELECT id,
     mobile_phone,
     email,
     photo_url,
-    'Active' as user_status
+    
+    CASE
+    WHEN status = true THEN 'Active'
+    ELSE 'Inactive'
+    END AS user_status
+
     FROM users u
     order by lastname asc";
 
@@ -50,7 +55,9 @@ $res = pg_query($supa_conn, $sql);
                 <a href='edit_user.php?id=" . $row['id'] . "'>
                  <img src='icons/lapiz.png' width='20'>&nbsp;&nbsp;
                 </a>&nbsp;&nbsp;
-                <img src='icons/basura.png' width='20'>&nbsp;&nbsp;
+                <a href='user_action.php?id=" . $row['id'] . "'>
+    <img src='icons/basura.png' width='20'>
+</a>&nbsp;&nbsp;
 
                 <img src='icons/lupa.png' width='20'>
                 </td>";

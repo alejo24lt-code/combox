@@ -35,6 +35,7 @@ $supa_conn = pg_connect("
     dbname=$supa_dbname
     user=$supa_user
     password=$supa_password
+    sslmode=require
 ");
 
 
