@@ -28,15 +28,29 @@ if ($action === 'delete') {
 } elseif ($action === 'deactivate') {
 
     $sql = "UPDATE users
-        SET status = false
-        WHERE id = $1";
-        
+            SET status = false
+            WHERE id = $1";
+
     $result = pg_query_params($supa_conn, $sql, array($id));
 
     if ($result && pg_affected_rows($result) > 0) {
         $message = "Usuario desactivado correctamente.";
     } else {
         $message = "No se pudo desactivar el usuario.";
+    }
+
+} elseif ($action === 'activate') {
+
+    $sql = "UPDATE users
+            SET status = true
+            WHERE id = $1";
+
+    $result = pg_query_params($supa_conn, $sql, array($id));
+
+    if ($result && pg_affected_rows($result) > 0) {
+        $message = "Usuario activado correctamente.";
+    } else {
+        $message = "No se pudo activar el usuario.";
     }
 
 } else {

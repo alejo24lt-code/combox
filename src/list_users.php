@@ -9,28 +9,34 @@ $sql = "SELECT id,
     mobile_phone,
     email,
     photo_url,
-    
     CASE
-    WHEN status = true THEN 'Active'
-    ELSE 'Inactive'
+        WHEN status = true THEN 'Active'
+        ELSE 'Inactive'
     END AS user_status
-
-    FROM users u
-    order by lastname asc";
+    FROM users
+    ORDER BY lastname ASC";
 
 $res = pg_query($supa_conn, $sql);
+
+if (!$res) {
+    die("Error al consultar usuarios: " . pg_last_error($supa_conn));
+}
+
+$storage_prefix = 'https://rzybdadcqjmlonauahdr.supabase.co/storage/v1/object/public/profile-photos/';
 
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combox</title>
 </head>
 <body>
+
     <center><h3>List of Users</h3></center>
+
     <table border="1" align="center">
         <tr>
             <th>First Name</th>
@@ -38,34 +44,61 @@ $res = pg_query($supa_conn, $sql);
             <th>Mobile</th>
             <th>Email</th>
             <th>Status</th>
+            <th>Photo</th>
+            <th>Actions</th>
         </tr>
 
-        <?php
-        while ($row = pg_fetch_assoc($res)) {
-            echo "<tr>";
-            echo "<td>" . $row['firstname'] . "</td>";
-            echo "<td>" . $row['lastname'] . "</td>";
-            echo "<td>" . $row['mobile_phone'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['user_status'] . "</td>";
-            echo "<td align='center'><img src='" . $row['photo_url'] . "' width='30'></td>";
-            
-            
-            echo "<td>
-                <a href='edit_user.php?id=" . $row['id'] . "'>
-                 <img src='icons/lapiz.png' width='20'>&nbsp;&nbsp;
-                </a>&nbsp;&nbsp;
-                <a href='user_action.php?id=" . $row['id'] . "'>
-    <img src='icons/basura.png' width='20'>
-</a>&nbsp;&nbsp;
+        <?php while ($row = pg_fetch_assoc($res)) {
 
-                <img src='icons/lupa.png' width='20'>
-                </td>";
-            
-            
-            echo "</tr>";
-        }
+            $foto = $row['photo_url'] ?? '';
+
+            if (!empty($foto) && strpos($foto, $storage_prefix) === 0) {
+                $rutaFoto = $foto;
+            } else {
+                $nombreFoto = basename($foto);
+                $rutaFoto = 'photos/' . $nombreFoto;
+
+                if (
+                    empty($foto) ||
+                    $nombreFoto === '.' ||
+                    $nombreFoto === '..' ||
+                    !is_file(__DIR__ . '/' . $rutaFoto)
+                ) {
+                    $rutaFoto = 'photos/usuario.png';
+                }
+            }
         ?>
+
+        <tr>
+            <td><?php echo htmlspecialchars($row['firstname']); ?></td>
+            <td><?php echo htmlspecialchars($row['lastname']); ?></td>
+            <td><?php echo htmlspecialchars($row['mobile_phone']); ?></td>
+            <td><?php echo htmlspecialchars($row['email']); ?></td>
+            <td><?php echo htmlspecialchars($row['user_status']); ?></td>
+
+            <td align="center">
+                <img src="<?php echo htmlspecialchars($rutaFoto); ?>" width="30">
+            </td>
+
+            <td align="center">
+                <a href="edit_user.php?id=<?php echo urlencode($row['id']); ?>">
+                    <img src="icons/lapiz.png" width="20" alt="Editar">
+                </a>
+
+                <a href="user_action.php?id=<?php echo urlencode($row['id']); ?>">
+                    <img src="icons/basura.png" width="20" alt="Eliminar">
+                </a>
+
+                <a href="view_user.php?id=<?php echo urlencode($row['id']); ?>">
+                    <img src="icons/lupa.png" width="20" alt="Consultar">
+                </a>
+            </td>
+        </tr>
+
+        <?php } ?>
+
     </table>
+
 </body>
 </html>
+

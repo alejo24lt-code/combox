@@ -8,7 +8,7 @@ if (!ctype_digit((string)$id)) {
     die("ID de usuario no válido.");
 }
 
-$sql = "SELECT id, firstname, lastname, email
+$sql = "SELECT id, firstname, lastname, email, status
         FROM users
         WHERE id = $1";
 
@@ -114,11 +114,23 @@ $user = pg_fetch_assoc($result);
             Eliminar definitivamente
         </button>
 
-        <button class="desactivar" type="submit"
-                name="action" value="deactivate"
-                onclick="return confirm('¿Seguro que deseas desactivar este usuario?');">
-            Desactivar usuario
-        </button>
+	<?php if ($user['status'] === 't' || $user['status'] === true) { ?>
+
+    <button class="desactivar" type="submit"
+            name="action" value="deactivate"
+            onclick="return confirm('¿Seguro que deseas desactivar este usuario?');">
+        Desactivar usuario
+    </button>
+
+<?php } else { ?>
+
+    <button class="desactivar" type="submit"
+            name="action" value="activate"
+            onclick="return confirm('¿Seguro que deseas activar este usuario?');">
+        Activar usuario
+    </button>
+
+<?php } ?>
 
     </form>
 
