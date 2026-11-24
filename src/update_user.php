@@ -73,10 +73,8 @@ if (isset($_FILES['photo']) &&
         CURLOPT_POSTFIELDS => $file_content,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => [
-            'Authorization: Bearer ' . SUPABASE_SECRET_KEY,
-            'apikey: ' . SUPABASE_SECRET_KEY,
-            'Content-Type: ' . $mime,
-            'x-upsert: true'
+            'apikey: ' . SUPABASE_PUBLISHABLE_KEY,
+            'Content-Type: ' . $mime
         ]
     ]);
 
