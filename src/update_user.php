@@ -2,12 +2,6 @@
 <?php
 require('../config/database.php');
 
-// Detectar sistema operativo para cargar Storage
-if (PHP_OS_FAMILY === 'Windows') {
-    require_once('C:/xampp1/private/combox-config.php');
-} else {
-    require_once('/etc/combox-config.php');
-}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: list_users.php");
