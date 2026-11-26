@@ -60,7 +60,7 @@ if ($email === '' || $password === '') {
 
 // Buscamos únicamente por correo.
 // La contraseña se comprobará después con PHP.
-$sql = "SELECT id, firstname, lastname, email, password
+$sql = "SELECT id, firstname, lastname, email, password, photo_url
         FROM public.users
         WHERE email = $1";
 
@@ -214,6 +214,7 @@ $_SESSION['user_id'] = $row['id'];
 $_SESSION['fName'] = trim($row['firstname']);
 $_SESSION['lName'] = trim($row['lastname']);
 $_SESSION['email'] = $row['email'];
+$_SESSION['photo_url'] = $row['photo_url'] ?? '';
 
 
 // ============================================

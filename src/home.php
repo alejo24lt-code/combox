@@ -52,20 +52,26 @@ if (!isset($_SESSION['user_id'])) {
             font-size: 18px;
         ">
 
-            <!-- User Icon -->
-            <div style="
-                width: 45px;
-                height: 45px;
-                background-color: white;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #1565C0;
-                font-size: 24px;
-            ">
-                👤
-            </div>
+            <!-- User Profile Photo -->
+            <?php if (!empty($_SESSION['photo_url'])): ?>
+                <img
+                    src="<?php echo htmlspecialchars($_SESSION['photo_url'], ENT_QUOTES, 'UTF-8'); ?>"
+                    alt="Foto de perfil"
+                    style="width:45px;height:45px;border-radius:50%;object-fit:cover;"
+                >
+            <?php else: ?>
+                <div style="
+                    width: 45px;
+                    height: 45px;
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #1565C0;
+                    font-size: 24px;
+                ">👤</div>
+            <?php endif; ?>
 
             <!-- User Name -->
             <span style="color: white; font-weight: bold;">
@@ -115,25 +121,27 @@ if (!isset($_SESSION['user_id'])) {
             flex-wrap: wrap;
         ">
 
-            <!-- Profile Card -->
-            <div style="
+            <!-- List Users Card -->
+            <a href="list_users.php" style="
+                display: block;
                 width: 200px;
                 padding: 25px;
                 background-color: rgba(245,245,245,0.88);
                 border: 2px solid #42A5F5;
                 border-radius: 12px;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+                text-decoration: none;
             ">
 
                 <h3 style="color: #1565C0;">
-                    Profile
+                    Listar usuarios
                 </h3>
 
                 <p style="color: #555555;">
-                    Your personal information.
+                    Consulta los usuarios registrados.
                 </p>
 
-            </div>
+            </a>
 
 
             <!-- Services Card -->
