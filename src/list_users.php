@@ -99,6 +99,19 @@ $storage_prefix = 'https://rzybdadcqjmlonauahdr.supabase.co/storage/v1/object/pu
 
     </table>
 
+    <div style="margin-top: 25px; margin-bottom: 30px;">
+        <a href="home.php" style="
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        ">
+            Regresar al menú principal
+        </a>
+    </div>
+
 </body>
 </html>
 
